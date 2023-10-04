@@ -6,7 +6,7 @@
 /*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:43:22 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/04 06:56:54 by tlakchai         ###   ########.fr       */
+/*   Updated: 2023/10/04 07:02:38 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,22 @@ int ft_printf(const char *fmt, ...)
 				size += format_char(ap);
 			else if (*fmt == 's')
 				size += format_string(ap);
-			else if (*fmt == '%')
-				size += format_percent(ap);
 			else if (*fmt == 'i' || *fmt == 'd')
 				size += format_number(ap);
 			else if (*fmt == 'u')
 				size += format_number_unsinged(ap);
-			else 
-				write(1, "<Unknown Format!>", 17);
+			else if (*fmt == '%')
+				size += format_percent(ap);
+			else if (*fmt == 0)
+			{
+				va_end(ap);
+				return (-1);
+			}
+			else
+			{
+				write(1, --fmt, 1);
+				size++;
+			}
 		}
 		else
 		{
@@ -50,7 +58,7 @@ int ft_printf(const char *fmt, ...)
 
 int main(void)
 {
-    printf("%d\n", ft_printf("%u\n", -123));
-	printf("%d\n", printf("%u\n", -123));
+    printf("%d\n", ft_printf("%%%%%"));
+	printf("%d\n", printf("%%%%%"));
     return (0);
 }
