@@ -6,7 +6,7 @@
 /*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:24:52 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/03 22:37:37 by tlakchai         ###   ########.fr       */
+/*   Updated: 2023/10/04 06:55:50 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ int write_numb(long d, int size)
 int format_number(va_list ap)
 {
 	int	d;
+
+	d = va_arg(ap, int);
+	return (write_numb(d, 0));	
+}
+
+int format_number_unsinged(va_list ap)
+{
+	unsigned int	d;
 
 	d = va_arg(ap, int);
 	return (write_numb(d, 0));	
