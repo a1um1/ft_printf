@@ -8,11 +8,11 @@ all: ${NAME}
 .c.o: ft_printf.h
 	cc -lft -Llibft -I . -c $< -o $@
 
-libft:
-	(cd libft && make all && make clean)
+libft.a:
+	make -C libft && make -C libft clean
 
-${NAME}: libft ${OBJ}
-	ar -rcs ${NAME} ${OBJ}
+${NAME}: libft.a ${OBJ}
+	# ar -rcs ${NAME} ${OBJ}
 
 clean:
 	rm -f ${OBJ}
@@ -22,4 +22,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY: all clean fclean re SRC
+.PHONY: all clean fclean re
