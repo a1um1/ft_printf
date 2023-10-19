@@ -37,7 +37,7 @@ int format_number(va_list ap)
 	int	d;
 
 	d = va_arg(ap, int);
-	return (write_numb(d, 0));	
+	return (write_numb((long) d, 0));	
 }
 
 int format_number_unsinged(va_list ap)
@@ -45,5 +45,5 @@ int format_number_unsinged(va_list ap)
 	unsigned int	d;
 
 	d = va_arg(ap, int);
-	return (write_numb(d, 0));	
+	return (write_numb((long) d, 0));	
 }

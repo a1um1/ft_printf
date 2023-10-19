@@ -14,6 +14,7 @@
 
 int format_percent(va_list ap)
 {
+    (void) ap;
     write(1, "%", 1);
 	return (1);
 }
