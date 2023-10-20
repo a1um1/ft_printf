@@ -67,8 +67,8 @@ int	main(void)
 	x = malloc(20);
 	if (!x)
 		return (0);
-	printf("%d\n", ft_printf("%",x));
-	printf("%d\n", printf("%", x));
+	printf(" Our (%d Bytes)\n", ft_printf("%p",0));
+	printf(" System (%d Bytes)\n", printf("%p", 0));
 	free(x);
 	return (0);
 }

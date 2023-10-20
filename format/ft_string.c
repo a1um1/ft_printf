@@ -14,7 +14,7 @@
 
 int	format_string(va_list ap)
 {
-	char	*s;
+	string	s;
 	int		str_size;
 
 	s = va_arg(ap, char *);

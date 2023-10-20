@@ -19,6 +19,8 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 
+typedef char *string;
+
 int	ft_printf(const char *fmt, ...);
 
 int	format_string(va_list ap);
