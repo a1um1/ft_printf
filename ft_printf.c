@@ -43,16 +43,10 @@ int	ft_printf(const char *fmt, ...)
 				return (-1);
 			}
 			else
-			{
-				write(1, --fmt, 1);
-				ptf_base.size++;
-			}
+				ptf_base.size += write(1, --fmt, 1);
 		}
 		else
-		{
-			write(1, fmt, 1);
-			ptf_base.size++;
-		}
+			ptf_base.size += write(1, fmt, 1);
 		fmt++;
 	}
 	va_end(ptf_base.ap);
