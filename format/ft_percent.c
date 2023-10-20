@@ -12,9 +12,7 @@
 
 #include "../ft_printf.h"
 
-int	format_percent(va_list ap)
+void	format_percent(t_ptf_cfg *pf_cfg)
 {
-	(void) ap;
-	write(1, "%", 1);
-	return (1);
+	pf_cfg->size += write(1, "%", 1);
 }

@@ -12,19 +12,14 @@
 
 #include "../ft_printf.h"
 
-int	format_string(va_list ap)
+void	format_string(t_ptf_cfg *pf_cfg)
 {
 	string	s;
-	int		str_size;
 
-	s = va_arg(ap, char *);
-	if (s == NULL)
-	{
-		str_size = ft_strlen("(null)");
-		write(1, "(null)", str_size);
-		return (str_size);
+	s = va_arg(pf_cfg->ap, char *);
+	if (s == NULL){
+		pf_cfg->size += write(1, "(null)", ft_strlen("(null)"));
+		return ;
 	}
-	str_size = ft_strlen(s);
-	write(1, s, str_size);
-	return (str_size);
+	pf_cfg->size += write(1, s, ft_strlen(s));
 }

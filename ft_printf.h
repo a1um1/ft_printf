@@ -21,12 +21,19 @@
 
 typedef char *string;
 
+typedef struct s_ptf_cfg
+{
+    int     size;
+    va_list	ap;
+} t_ptf_cfg;
+
+
 int	ft_printf(const char *fmt, ...);
 
-int	format_string(va_list ap);
-int	format_percent(va_list ap);
-int	format_char(va_list ap);
-int	format_mem(va_list ap);
-int	format_number(va_list ap, int base, int uppercase);
+void	format_string(t_ptf_cfg *pf_cfg);
+void	format_percent(t_ptf_cfg *pf_cfg);
+void	format_char(t_ptf_cfg *pf_cfg);
+void	format_mem(t_ptf_cfg *pf_cfg);
+void	format_number(t_ptf_cfg *pf_cfg, int base, int uppercase);
 
 #endif

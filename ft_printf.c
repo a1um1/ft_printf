@@ -14,50 +14,49 @@
 
 int	ft_printf(const char *fmt, ...)
 {
-	int		size;
-	va_list	ap;
+	t_ptf_cfg	ptf_base;
 
-	size = 0;
-	va_start(ap, fmt);
+	ptf_base.size = 0;
+	va_start(ptf_base.ap, fmt);
 	while (*fmt)
 	{
 		if (*fmt == '%')
 		{
 			fmt++;
 			if (*fmt == 's')
-				size += format_string(ap);
+				format_string(&ptf_base);
 			else if (*fmt == 'c')
-				size += format_char(ap);
+				format_char(&ptf_base);
 			else if (*fmt == 'i' || *fmt == 'd')
-				size += format_number(ap, 10, 0);
+				format_number(&ptf_base, 10, 0);
 			else if (*fmt == 'u')
-				size += format_number(ap, 10, 0);
+				format_number(&ptf_base, 10, 0);
 			else if (*fmt == 'p')
-				size += format_mem(ap);
+				format_mem(&ptf_base);
 			else if (*fmt == 'x' || *fmt == 'X')
-				size += format_number(ap, 16, (*fmt == 'X'));
+				format_number(&ptf_base, 16, (*fmt == 'X'));
 			else if (*fmt == '%')
-				size += format_percent(ap);
+				format_percent(&ptf_base);
 			else if (*fmt == 0)
 			{
-				va_end(ap);
+				va_end(ptf_base.ap);
 				return (-1);
 			}
 			else
 			{
 				write(1, --fmt, 1);
-				size++;
+				ptf_base.size++;
 			}
 		}
 		else
 		{
 			write(1, fmt, 1);
-			size++;
+			ptf_base.size++;
 		}
 		fmt++;
 	}
-	va_end(ap);
-	return (size);
+	va_end(ptf_base.ap);
+	return (ptf_base.size);
 }
 
 int	main(void)
@@ -67,8 +66,8 @@ int	main(void)
 	x = malloc(20);
 	if (!x)
 		return (0);
-	printf(" Our (%d Bytes)\n", ft_printf("%p",0));
-	printf(" System (%d Bytes)\n", printf("%p", 0));
+	printf(" Our (%d Bytes)\n", ft_printf("%p",x));
+	printf(" System (%d Bytes)\n", printf("%p", x));
 	free(x);
 	return (0);
 }

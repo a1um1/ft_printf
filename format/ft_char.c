@@ -12,11 +12,10 @@
 
 #include "../ft_printf.h"
 
-int	format_char(va_list ap)
+void	format_char(t_ptf_cfg *pf_cfg)
 {
 	char	c;
 
-	c = (char) va_arg(ap, int);
-	write(1, &c, 1);
-	return (1);
+	c = va_arg(pf_cfg->ap, int);
+	pf_cfg->size += write(1, &c, 1);
 }

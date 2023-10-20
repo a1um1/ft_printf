@@ -14,20 +14,18 @@
 
 int	write_num(int x)
 {
-	write(1, &x, 1);
-	return (1);
+	return write(1, &x, 1);
 }
 
-int	write_numb(long d, int size, int base, int uppercase)
+int	ft_putnbr_base(long long d, int size, int base, int uppercase)
 {
 	if (d < 0)
 	{
 		d = -d;
-		size++;
-		write(1, "-", 1);
+		size += write(1, "-", 1);
 	}
 	if (d >= base)
-		size += write_numb(d / base, 0, base, uppercase);
+		size += ft_putnbr_base(d / base, 0, base, uppercase);
 	if (d % base >= 10)
 		size += write_num((d % base) + 87 - uppercase * 32);
 	else
@@ -35,19 +33,18 @@ int	write_numb(long d, int size, int base, int uppercase)
 	return (size);
 }
 
-int	format_number(va_list ap, int base, int uppercase)
+void	format_number(t_ptf_cfg *pf_cfg, int base, int uppercase)
 {
 	int	d;
 
-	d = va_arg(ap, int);
-	return (write_numb((long) d, 0, base, uppercase));
+	d = va_arg(pf_cfg->ap, int);
+	pf_cfg->size += ft_putnbr_base((long) d, 0, base, uppercase);
 }
 
-int	format_mem(va_list ap)
+void	format_mem(t_ptf_cfg *pf_cfg)
 {
 	void	*d;
 
-	d = va_arg(ap, void *);
-	write(1, "0x", 2);
-	return (write_numb((long) d, 2, 16, 0));
+	d = va_arg(pf_cfg->ap, void *);
+	pf_cfg->size += ft_putnbr_base((size_t) d, write(1, "0x", 2), 16, 0);
 }
