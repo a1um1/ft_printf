@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_percent.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:00:31 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/03 22:08:00 by tlakchai         ###   ########.fr       */
+/*   Updated: 2023/10/20 05:10:39 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int format_percent(va_list ap)
+int	format_percent(va_list ap)
 {
-    (void) ap;
-    write(1, "%", 1);
+	(void) ap;
+	write(1, "%", 1);
 	return (1);
 }

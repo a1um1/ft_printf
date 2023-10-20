@@ -3,35 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:43:22 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/04 07:02:38 by tlakchai         ###   ########.fr       */
+/*   Updated: 2023/10/20 09:26:21 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf(const char *fmt, ...)
+int	ft_printf(const char *fmt, ...)
 {
 	int		size;
-	va_list ap;
+	va_list	ap;
 
-    size = 0;
+	size = 0;
 	va_start(ap, fmt);
 	while (*fmt)
 	{
 		if (*fmt == '%')
 		{
 			fmt++;
-			if (*fmt == 'c')
-				size += format_char(ap);
-			else if (*fmt == 's')
+			if (*fmt == 's')
 				size += format_string(ap);
+			else if (*fmt == 'c')
+				size += format_char(ap);
 			else if (*fmt == 'i' || *fmt == 'd')
-				size += format_number(ap);
+				size += format_number(ap, 10, 0);
 			else if (*fmt == 'u')
-				size += format_number_unsinged(ap);
+				size += format_number(ap, 10, 0);
+			else if (*fmt == 'p')
+				size += format_mem(ap);
+			else if (*fmt == 'x' || *fmt == 'X')
+				size += format_number(ap, 16, (*fmt == 'X'));
 			else if (*fmt == '%')
 				size += format_percent(ap);
 			else if (*fmt == 0)
@@ -56,9 +60,15 @@ int ft_printf(const char *fmt, ...)
 	return (size);
 }
 
-int main(void)
+int	main(void)
 {
-    printf("%d\n", ft_printf("%%%%%"));
-	printf("%d\n", printf("%%%%%"));
-    return (0);
+	void	*x;
+
+	x = malloc(20);
+	if (!x)
+		return (0);
+	printf("%d\n", ft_printf("%",x));
+	printf("%d\n", printf("%", x));
+	free(x);
+	return (0);
 }
