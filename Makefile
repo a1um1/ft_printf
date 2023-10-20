@@ -1,7 +1,8 @@
-SRC = format/ft_char.c format/ft_number.c format/ft_percent.c format/ft_string.c ft_printf.c libft/ft_strlen.c
-SRCS = ${addprefix ${SRC_DIR}, ${SRC}}
-OBJ = ${SRCS:.c=.o}
-NAME = ft_printf
+SRC		=	format/ft_char.c format/ft_number.c format/ft_percent.c \
+			format/ft_string.c ft_printf.c libft/ft_strlen.c
+SRCS	=	${addprefix ${SRC_DIR}, ${SRC}}
+OBJ		=	${SRCS:.c=.o}
+NAME	=	ft_printf
 
 all: ${NAME}
 
