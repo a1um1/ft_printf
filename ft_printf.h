@@ -6,7 +6,7 @@
 /*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:42:34 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/21 14:24:10 by tlakchai         ###   ########.fr       */
+/*   Updated: 2023/10/21 15:00:39 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ typedef char	*t_string;
 
 typedef struct s_ptf_cfg
 {
-	int		size;
-	va_list	ap;
+	int			size;
+	va_list		ap;
+	t_string	fmt;
 }	t_ptf_cfg;
 
 

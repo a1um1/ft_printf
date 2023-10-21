@@ -3,65 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:43:22 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/20 09:26:21 by codespace        ###   ########.fr       */
+/*   Updated: 2023/10/21 15:11:51 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *fmt, ...)
+void	do_format(t_ptf_cfg *ptf_cfg)
 {
-	t_ptf_cfg	ptf_base;
-
-	ptf_base.size = 0;
-	va_start(ptf_base.ap, fmt);
-	while (*fmt)
+	ptf_cfg->fmt++;
+	if (*(ptf_cfg->fmt) == 's')
+		format_string(ptf_cfg);
+	else if (*ptf_cfg->fmt == 'c')
+		format_char(ptf_cfg);
+	else if (*(ptf_cfg->fmt) == 'i' || *(ptf_cfg->fmt) == 'd')
+		format_number(ptf_cfg, 10, 0);
+	else if (*(ptf_cfg->fmt) == 'u')
+		format_number(ptf_cfg, 10, 0);
+	else if (*(ptf_cfg->fmt) == 'p')
+		format_mem(ptf_cfg);
+	else if (*(ptf_cfg->fmt) == 'x' || *(ptf_cfg->fmt) == 'X')
+		format_number(ptf_cfg, 16, (*(ptf_cfg->fmt) == 'X'));
+	else if (*(ptf_cfg->fmt) == '%')
+		format_percent(ptf_cfg);
+	else if (*(ptf_cfg->fmt) == 0)
 	{
-		if (*fmt == '%')
-		{
-			fmt++;
-			if (*fmt == 's')
-				format_string(&ptf_base);
-			else if (*fmt == 'c')
-				format_char(&ptf_base);
-			else if (*fmt == 'i' || *fmt == 'd')
-				format_number(&ptf_base, 10, 0);
-			else if (*fmt == 'u')
-				format_number(&ptf_base, 10, 0);
-			else if (*fmt == 'p')
-				format_mem(&ptf_base);
-			else if (*fmt == 'x' || *fmt == 'X')
-				format_number(&ptf_base, 16, (*fmt == 'X'));
-			else if (*fmt == '%')
-				format_percent(&ptf_base);
-			else if (*fmt == 0)
-			{
-				va_end(ptf_base.ap);
-				return (-1);
-			}
-			else
-				ptf_base.size += write(1, --fmt, 1);
-		}
-		else
-			ptf_base.size += write(1, fmt, 1);
-		fmt++;
+		va_end(ptf_cfg->ap);
+		ptf_cfg->size = -1;
 	}
-	va_end(ptf_base.ap);
-	return (ptf_base.size);
+	else
+		ptf_cfg->size += write(1, --(ptf_cfg->fmt), 1);
 }
 
-int	main(void)
+int	ft_printf(const char *fmt, ...)
 {
-	void	*x;
+	t_ptf_cfg	ptf_cfg;
 
-	x = malloc(20);
-	if (!x)
-		return (0);
-	printf(" Our (%d Bytes)\n", ft_printf("%p",x));
-	printf(" System (%d Bytes)\n", printf("%p", x));
-	free(x);
-	return (0);
+	ptf_cfg.size = 0;
+	ptf_cfg.fmt = (t_string) fmt;
+	va_start(ptf_cfg.ap, fmt);
+	while (*(ptf_cfg.fmt) && ptf_cfg.size >= 0)
+	{
+		if (*(ptf_cfg.fmt) == '%')
+			do_format(&ptf_cfg);
+		else
+			ptf_cfg.size += write(1, ptf_cfg.fmt, 1);
+		ptf_cfg.fmt++;
+	}
+	va_end(ptf_cfg.ap);
+	return (ptf_cfg.size);
 }

@@ -2,21 +2,22 @@ SRC		=	format/ft_char.c format/ft_number.c format/ft_percent.c \
 			format/ft_string.c ft_printf.c libft/str/ft_strlen.c
 SRCS	=	${addprefix ${SRC_DIR}, ${SRC}}
 OBJ		=	${SRCS:.c=.o}
-NAME	=	ft_printf.a
+NAME	=	libftprintf.a
 
 all: ${NAME}
 
 .c.o: 		ft_printf.h
-	cc -I . -L ./libft -l ft -c $< -o $@
+	cc -Wall -Werror -Wextra -I . -c $< -o $@
 
 libft/libft.a:
 	make -C libft
 
 ${NAME}: 	libft/libft.a ${OBJ}
+	cp	libft/libft.a $(NAME)
 	ar -rcs	${NAME} ${OBJ}
 
-debug: 		libft/libft.a ${OBJ}
-	cc -I . ${OBJ} -o ft_printf
+debug: 		all
+	cc -I . -L . -lftprintf ft_printf.a test/basic.c -o ft_printf
 
 clean:
 	rm -f ${OBJ}
