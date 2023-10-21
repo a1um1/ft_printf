@@ -2,7 +2,7 @@ SRC		=	format/ft_char.c format/ft_number.c format/ft_percent.c \
 			format/ft_string.c ft_printf.c libft/str/ft_strlen.c
 SRCS	=	${addprefix ${SRC_DIR}, ${SRC}}
 OBJ		=	${SRCS:.c=.o}
-NAME	=	ft_printf
+NAME	=	ft_printf.a
 
 all: ${NAME}
 
@@ -13,7 +13,7 @@ libft/libft.a:
 	make -C libft
 
 ${NAME}: 	libft/libft.a ${OBJ}
-	echo "Hello" > x
+	ar -rcs	${NAME} ${OBJ}
 
 debug: 		libft/libft.a ${OBJ}
 	cc -I . ${OBJ} -o ft_printf

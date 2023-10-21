@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:42:34 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/20 09:19:10 by codespace        ###   ########.fr       */
+/*   Updated: 2023/10/21 14:24:10 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 
-typedef char *string;
+typedef char	*t_string;
 
 typedef struct s_ptf_cfg
 {
-    int     size;
-    va_list	ap;
-} t_ptf_cfg;
+	int		size;
+	va_list	ap;
+}	t_ptf_cfg;
 
 
-int	ft_printf(const char *fmt, ...);
+int		ft_printf(const char *fmt, ...);
 
 void	format_string(t_ptf_cfg *pf_cfg);
 void	format_percent(t_ptf_cfg *pf_cfg);

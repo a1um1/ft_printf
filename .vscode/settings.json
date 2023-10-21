@@ -5,5 +5,5 @@
     "unistd.h": "c",
     "libft.h": "c",
     "stdlib.h": "c"
-  }
+  },
 }
