@@ -6,7 +6,7 @@
 /*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:43:22 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/21 15:11:51 by tlakchai         ###   ########.fr       */
+/*   Updated: 2023/10/22 17:11:16 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	do_format(t_ptf_cfg *ptf_cfg)
 	else if (*(ptf_cfg->fmt) == 'i' || *(ptf_cfg->fmt) == 'd')
 		format_number(ptf_cfg, 10, 0);
 	else if (*(ptf_cfg->fmt) == 'u')
-		format_number(ptf_cfg, 10, 0);
+		format_unumber(ptf_cfg, 10, 0);
 	else if (*(ptf_cfg->fmt) == 'p')
 		format_mem(ptf_cfg);
 	else if (*(ptf_cfg->fmt) == 'x' || *(ptf_cfg->fmt) == 'X')
-		format_number(ptf_cfg, 16, (*(ptf_cfg->fmt) == 'X'));
+		format_unumber(ptf_cfg, 16, (*(ptf_cfg->fmt) == 'X'));
 	else if (*(ptf_cfg->fmt) == '%')
 		format_percent(ptf_cfg);
 	else if (*(ptf_cfg->fmt) == 0)

@@ -6,7 +6,7 @@
 /*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:42:34 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/21 15:00:39 by tlakchai         ###   ########.fr       */
+/*   Updated: 2023/10/22 17:03:37 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void	format_percent(t_ptf_cfg *pf_cfg);
 void	format_char(t_ptf_cfg *pf_cfg);
 void	format_mem(t_ptf_cfg *pf_cfg);
 void	format_number(t_ptf_cfg *pf_cfg, int base, int uppercase);
-
+void	format_unumber(t_ptf_cfg *pf_cfg, int base, int uppercase);
 #endif
