@@ -6,7 +6,7 @@
 /*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 17:15:39 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/22 17:15:49 by tlakchai         ###   ########.fr       */
+/*   Updated: 2023/10/22 22:46:46 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(void)
 {
-	ft_printf("%x\n", -1);
-	printf("%x\n", -1);
+	ft_printf("%s\n", NULL);
+	printf("%s\n", NULL);
 	return (0);
 }

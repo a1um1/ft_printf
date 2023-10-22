@@ -6,7 +6,7 @@
 /*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:43:22 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/22 17:11:16 by tlakchai         ###   ########.fr       */
+/*   Updated: 2023/10/22 22:45:16 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	do_format(t_ptf_cfg *ptf_cfg)
 	if (*(ptf_cfg->fmt) == 's')
 		format_string(ptf_cfg);
 	else if (*ptf_cfg->fmt == 'c')
-		format_char(ptf_cfg);
+		ptf_cfg->size += write(1, &(char){va_arg(ptf_cfg->ap, int)}, 1);
 	else if (*(ptf_cfg->fmt) == 'i' || *(ptf_cfg->fmt) == 'd')
 		format_number(ptf_cfg, 10, 0);
 	else if (*(ptf_cfg->fmt) == 'u')
@@ -28,7 +28,7 @@ void	do_format(t_ptf_cfg *ptf_cfg)
 	else if (*(ptf_cfg->fmt) == 'x' || *(ptf_cfg->fmt) == 'X')
 		format_unumber(ptf_cfg, 16, (*(ptf_cfg->fmt) == 'X'));
 	else if (*(ptf_cfg->fmt) == '%')
-		format_percent(ptf_cfg);
+		ptf_cfg->size += write(1, &(char){'%'}, 1);
 	else if (*(ptf_cfg->fmt) == 0)
 	{
 		va_end(ptf_cfg->ap);

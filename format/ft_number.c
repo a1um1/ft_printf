@@ -6,26 +6,20 @@
 /*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:24:52 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/22 17:03:28 by tlakchai         ###   ########.fr       */
+/*   Updated: 2023/10/22 22:43:16 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	write_num(int x)
-{
-	return (write(1, &x, 1));
-}
-
 int	ft_putnbr_base(size_t d, int size, size_t base, int uppercase)
 {
-
 	if (d >= base)
 		size += ft_putnbr_base(d / base, 0, base, uppercase);
 	if (d % base >= 10)
-		size += write_num((d % base) + 87 - uppercase * 32);
+		size += write(1, &(char){(d % base) + 87 - (uppercase * 32)}, 1);
 	else
-		size += write_num((d % base) + 48);
+		size += write(1, &(char){(d % base) + 48}, 1);
 	return (size);
 }
 
