@@ -14,10 +14,10 @@ libft/libft.a:
 
 ${NAME}: 	libft/libft.a ${OBJ}
 	cp	libft/libft.a $(NAME)
-	ar -rcs	${NAME} ${OBJ}
+	ar rcs ${NAME} ${OBJ}
 
 debug: 		all
-	cc -I . -L . -lftprintf ft_printf.a test/basic.c -o ft_printf
+	cc -I . -L . -l ftprintf test/basic.c  -o ft_printf
 
 clean:
 	rm -f ${OBJ}
