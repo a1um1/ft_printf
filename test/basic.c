@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 17:15:39 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/22 23:24:59 by tlakchai         ###   ########.fr       */
+/*   Updated: 2023/10/22 17:09:57 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 int	main(void)
 {
-	ft_printf("%s\n", 0);
-	printf("%s\n", 0);
+	ft_printf(" Our %d written\n", ft_printf("Hello World %"));
+	ft_printf(" Our %d written\n", printf("Hello World %"));
+	// printf("Hello world %");
 	return (0);
 }

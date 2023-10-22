@@ -1,5 +1,4 @@
-SRC		=	format/ft_char.c format/ft_number.c format/ft_percent.c \
-			format/ft_string.c ft_printf.c libft/str/ft_strlen.c
+SRC		=	format/ft_number.c format/ft_string.c ft_printf.c
 SRCS	=	${addprefix ${SRC_DIR}, ${SRC}}
 OBJ		=	${SRCS:.c=.o}
 NAME	=	libftprintf.a
@@ -17,12 +16,14 @@ ${NAME}: 	libft/libft.a ${OBJ}
 	ar rcs ${NAME} ${OBJ}
 
 debug: 		all
-	cc -I . -L . -l ftprintf test/basic.c  -o ft_printf
+	cc -Wno-format test/basic.c libftprintf.a -o ft_printf
 
 clean:
+	make -C libft clean
 	rm -f ${OBJ}
 
 fclean:		clean
+	make -C libft fclean
 	rm -f ${NAME}
 
 re:			fclean all

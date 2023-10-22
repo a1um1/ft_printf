@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:42:34 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/22 22:41:24 by tlakchai         ###   ########.fr       */
+/*   Updated: 2023/10/22 16:59:24 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ typedef struct s_ptf_cfg
 int		ft_printf(const char *fmt, ...);
 
 void	format_string(t_ptf_cfg *pf_cfg);
-void	format_percent(t_ptf_cfg *pf_cfg);
-void	format_char(t_ptf_cfg *pf_cfg);
 void	format_mem(t_ptf_cfg *pf_cfg);
-void	format_number(t_ptf_cfg *pf_cfg, int base, int uppercase);
-void	format_unumber(t_ptf_cfg *pf_cfg, int base, int uppercase);
+void	format_number(t_ptf_cfg *pf_cfg, t_string base);
+void	format_unumber(t_ptf_cfg *pf_cfg, t_string base);
 
 #endif
