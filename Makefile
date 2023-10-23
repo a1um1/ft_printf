@@ -1,4 +1,6 @@
-SRC		=	format/ft_number.c format/ft_string.c ft_printf.c
+SRC		=	format/ft_number.c format/ft_string.c ft_printf.c \
+			ft_printf_utils.c
+SRC_DIR	=	./
 SRCS	=	${addprefix ${SRC_DIR}, ${SRC}}
 OBJ		=	${SRCS:.c=.o}
 NAME	=	libftprintf.a

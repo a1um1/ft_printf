@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:43:22 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/22 17:08:07 by codespace        ###   ########.fr       */
+/*   Updated: 2023/10/23 11:29:24 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	do_format(t_ptf_cfg *ptf_cfg)
 	if (*(ptf_cfg->fmt) == 's')
 		format_string(ptf_cfg);
 	else if (*ptf_cfg->fmt == 'c')
-		ptf_cfg->size += write(1, &(char){va_arg(ptf_cfg->ap, int)}, 1);
+		write_handler(ptf_cfg, &(char){va_arg(ptf_cfg->ap, int)}, 1);
 	else if (*(ptf_cfg->fmt) == 'i' || *(ptf_cfg->fmt) == 'd')
 		format_number(ptf_cfg, "0123456789");
 	else if (*(ptf_cfg->fmt) == 'u')
@@ -30,14 +30,14 @@ void	do_format(t_ptf_cfg *ptf_cfg)
 	else if (*(ptf_cfg->fmt) == 'X')
 		format_unumber(ptf_cfg, "0123456789ABCDEF");
 	else if (*(ptf_cfg->fmt) == '%')
-		ptf_cfg->size += write(1, &(char){'%'}, 1);
+		write_handler(ptf_cfg, &(char){'%'}, 1);
 	else if (*(ptf_cfg->fmt) == 0)
 	{
 		va_end(ptf_cfg->ap);
 		ptf_cfg->size = -1;
 	}
 	else
-		ptf_cfg->size += write(1, --(ptf_cfg->fmt), 1);
+		write_handler(ptf_cfg, &(char){*(ptf_cfg->fmt)}, 1);
 }
 
 int	ft_printf(const char *fmt, ...)
@@ -47,12 +47,12 @@ int	ft_printf(const char *fmt, ...)
 	ptf_cfg.size = 0;
 	ptf_cfg.fmt = (t_string) fmt;
 	va_start(ptf_cfg.ap, fmt);
-	while (*(ptf_cfg.fmt) && ptf_cfg.size >= 0)
+	while (*(ptf_cfg.fmt) != 0 && ptf_cfg.size >= 0)
 	{
 		if (*(ptf_cfg.fmt) == '%')
 			do_format(&ptf_cfg);
 		else
-			ptf_cfg.size += write(1, ptf_cfg.fmt, 1);
+			write_handler(&ptf_cfg, ptf_cfg.fmt, 1);
 		ptf_cfg.fmt++;
 	}
 	va_end(ptf_cfg.ap);

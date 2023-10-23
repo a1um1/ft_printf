@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:42:34 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/22 16:59:24 by codespace        ###   ########.fr       */
+/*   Updated: 2023/10/23 01:51:44 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void	format_string(t_ptf_cfg *pf_cfg);
 void	format_mem(t_ptf_cfg *pf_cfg);
 void	format_number(t_ptf_cfg *pf_cfg, t_string base);
 void	format_unumber(t_ptf_cfg *pf_cfg, t_string base);
+void	write_handler(t_ptf_cfg *ptf_cfg, char *c, size_t len);
 
 #endif

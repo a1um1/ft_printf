@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_number.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:24:52 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/22 17:06:09 by codespace        ###   ########.fr       */
+/*   Updated: 2023/10/23 02:09:00 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	format_unumber_base(t_ptf_cfg *ptf_cfg, size_t n, t_string base)
 		n /= base_len;
 	}
 	while (output_idx > 0)
-		ptf_cfg->size += write(1, &(output[--output_idx]), 1);
+		write_handler(ptf_cfg, &(output[--output_idx]), 1);
 }
 
 void	format_number(t_ptf_cfg *pf_cfg, t_string base)
@@ -39,7 +39,7 @@ void	format_number(t_ptf_cfg *pf_cfg, t_string base)
 	if (d < 0)
 	{
 		d = -d;
-		pf_cfg->size += write(1, "-", 1);
+		write_handler(pf_cfg, "-", 1);
 	}
 	format_unumber_base(pf_cfg, d, base);
 }
@@ -57,6 +57,6 @@ void	format_mem(t_ptf_cfg *pf_cfg)
 	size_t	d;
 
 	d = va_arg(pf_cfg->ap, size_t);
-	pf_cfg->size += write(1, "0x", 2);
+	write_handler(pf_cfg, "0x", 2);
 	format_unumber_base(pf_cfg, (size_t) d, "0123456789abcdef");
 }
