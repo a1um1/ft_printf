@@ -6,7 +6,7 @@
 /*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:42:34 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/23 01:51:44 by tlakchai         ###   ########.fr       */
+/*   Updated: 2023/12/29 04:37:59 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ typedef struct s_ptf_cfg
 	int			size;
 	va_list		ap;
 	t_string	fmt;
+	int			fd;
 }	t_ptf_cfg;
 
 int		ft_printf(const char *fmt, ...);
+int		ft_dprintf(int fd, const char *fmt, ...);
 
 void	format_string(t_ptf_cfg *pf_cfg);
 void	format_mem(t_ptf_cfg *pf_cfg);

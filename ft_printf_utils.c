@@ -6,7 +6,7 @@
 /*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 01:45:08 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/23 10:26:41 by tlakchai         ###   ########.fr       */
+/*   Updated: 2023/12/29 04:35:40 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	write_handler(t_ptf_cfg *ptf_cfg, char *c, size_t len)
 
 	if (ptf_cfg->size < 0)
 		return ;
-	code = write(1, c, len);
+	code = write(ptf_cfg->fd, c, len);
 	if (code < 0)
 		ptf_cfg->size = -1;
 	else
