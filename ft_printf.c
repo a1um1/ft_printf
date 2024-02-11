@@ -6,7 +6,7 @@
 /*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:43:22 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/12/29 04:37:41 by tlakchai         ###   ########.fr       */
+/*   Updated: 2024/01/01 04:44:30 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,22 @@ void	do_format(t_ptf_cfg *ptf_cfg)
 	else if (*(ptf_cfg->fmt) == '%')
 		write_handler(ptf_cfg, "%", 1);
 	else if (*(ptf_cfg->fmt) == 0)
+	{
 		ptf_cfg->size = -1;
+		va_end(ptf_cfg->ap);
+	}
 	else
 		write_handler(ptf_cfg, &(char){*(ptf_cfg->fmt)}, 1);
 }
 
-int	ft_dprintf(const int fd, const char *fmt, ...)
+int ft_vprintf ( const int fd, const char * fmt, va_list arg )
 {
 	t_ptf_cfg	ptf_cfg;
 
 	ptf_cfg.size = 0;
-	ptf_cfg.fd = 1;
-	ptf_cfg.fmt = (t_string) fmt;
-	va_start(ptf_cfg.ap, fmt);
+	ptf_cfg.fd = fd;
+	ptf_cfg.fmt = (char *) fmt;
+	ptf_cfg.ap = arg;
 	while (*(ptf_cfg.fmt) != 0 && ptf_cfg.size >= 0)
 	{
 		if (*(ptf_cfg.fmt) == '%')
@@ -57,7 +60,18 @@ int	ft_dprintf(const int fd, const char *fmt, ...)
 	return (ptf_cfg.size);
 }
 
+int	ft_dprintf(const int fd, const char *fmt, ...)
+{
+	va_list	arg;
+
+	va_start(arg, fmt);
+	return (ft_vprintf(fd, fmt, arg));
+}
+
 int	ft_printf(const char *fmt, ...)
 {
-	return (ft_dprintf(1, fmt));
+	va_list	arg;
+
+	va_start(arg, fmt);
+	return (ft_vprintf(1, fmt, arg));
 }

@@ -6,7 +6,7 @@
 /*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:42:34 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/12/29 04:37:59 by tlakchai         ###   ########.fr       */
+/*   Updated: 2024/01/01 04:34:21 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 
-typedef char	*t_string;
-
 typedef struct s_ptf_cfg
 {
 	int			size;
 	va_list		ap;
-	t_string	fmt;
+	char		*fmt;
 	int			fd;
 }	t_ptf_cfg;
 
@@ -34,8 +32,8 @@ int		ft_dprintf(int fd, const char *fmt, ...);
 
 void	format_string(t_ptf_cfg *pf_cfg);
 void	format_mem(t_ptf_cfg *pf_cfg);
-void	format_number(t_ptf_cfg *pf_cfg, t_string base);
-void	format_unumber(t_ptf_cfg *pf_cfg, t_string base);
-void	write_handler(t_ptf_cfg *ptf_cfg, char *c, size_t len);
+void	format_number(t_ptf_cfg *pf_cfg, char *base);
+void	format_unumber(t_ptf_cfg *pf_cfg, char *base);
+void	write_handler(t_ptf_cfg *ptf_cfg, const char *c, size_t len);
 
 #endif

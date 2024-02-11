@@ -6,13 +6,13 @@
 /*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:24:52 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/23 02:09:00 by tlakchai         ###   ########.fr       */
+/*   Updated: 2024/01/01 04:25:12 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static void	format_unumber_base(t_ptf_cfg *ptf_cfg, size_t n, t_string base)
+static void	format_unumber_base(t_ptf_cfg *ptf_cfg, size_t n, char *base)
 {
 	char	output[32];
 	int		output_idx;
@@ -31,7 +31,7 @@ static void	format_unumber_base(t_ptf_cfg *ptf_cfg, size_t n, t_string base)
 		write_handler(ptf_cfg, &(output[--output_idx]), 1);
 }
 
-void	format_number(t_ptf_cfg *pf_cfg, t_string base)
+void	format_number(t_ptf_cfg *pf_cfg, char *base)
 {
 	long	d;
 
@@ -44,7 +44,7 @@ void	format_number(t_ptf_cfg *pf_cfg, t_string base)
 	format_unumber_base(pf_cfg, d, base);
 }
 
-void	format_unumber(t_ptf_cfg *pf_cfg, t_string base)
+void	format_unumber(t_ptf_cfg *pf_cfg, char *base)
 {
 	unsigned int	d;
 

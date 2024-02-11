@@ -6,13 +6,13 @@
 /*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 01:45:08 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/12/29 04:35:40 by tlakchai         ###   ########.fr       */
+/*   Updated: 2024/01/01 04:30:39 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	write_handler(t_ptf_cfg *ptf_cfg, char *c, size_t len)
+void	write_handler(t_ptf_cfg *ptf_cfg, const char *c, size_t len)
 {
 	int	code;
 

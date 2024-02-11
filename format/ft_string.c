@@ -6,7 +6,7 @@
 /*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 22:00:31 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/10/23 01:59:04 by tlakchai         ###   ########.fr       */
+/*   Updated: 2024/01/01 04:39:45 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	format_string(t_ptf_cfg *pf_cfg)
 {
-	t_string	s;
+	char	*str;
 
-	s = va_arg(pf_cfg->ap, char *);
-	if (s == NULL)
-		return (write_handler(pf_cfg, "(null)", ft_strlen("(null)")));
-	write_handler(pf_cfg, s, ft_strlen(s));
+
+	str = va_arg(pf_cfg->ap, char *);
+	if (str == NULL)
+		return (write_handler(pf_cfg, "(null)", 6));
+	write_handler(pf_cfg, str, ft_strlen(str));
 }
