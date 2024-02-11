@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:43:22 by tlakchai          #+#    #+#             */
-/*   Updated: 2023/12/29 04:37:41 by tlakchai         ###   ########.fr       */
+/*   Updated: 2024/02/11 23:13:51 by ml               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,32 @@ void	do_format(t_ptf_cfg *ptf_cfg)
 		write_handler(ptf_cfg, &(char){*(ptf_cfg->fmt)}, 1);
 }
 
+int	ft_print(t_ptf_cfg *ptf_cfg)
+{
+	while (*(ptf_cfg->fmt) != 0 && ptf_cfg->size >= 0)
+	{
+		if (*(ptf_cfg->fmt) == '%')
+			do_format(ptf_cfg);
+		else
+			write_handler(ptf_cfg, ptf_cfg->fmt, 1);
+		ptf_cfg->fmt++;
+	}
+	va_end(ptf_cfg->ap);
+	return (ptf_cfg->size);
+}
+
 int	ft_dprintf(const int fd, const char *fmt, ...)
+{
+	t_ptf_cfg	ptf_cfg;
+
+	ptf_cfg.size = 0;
+	ptf_cfg.fd = fd;
+	ptf_cfg.fmt = (t_string) fmt;
+	va_start(ptf_cfg.ap, fmt);
+	return (ft_print(&ptf_cfg));
+}
+
+int	ft_printf(const char *fmt, ...)
 {
 	t_ptf_cfg	ptf_cfg;
 
@@ -45,19 +70,5 @@ int	ft_dprintf(const int fd, const char *fmt, ...)
 	ptf_cfg.fd = 1;
 	ptf_cfg.fmt = (t_string) fmt;
 	va_start(ptf_cfg.ap, fmt);
-	while (*(ptf_cfg.fmt) != 0 && ptf_cfg.size >= 0)
-	{
-		if (*(ptf_cfg.fmt) == '%')
-			do_format(&ptf_cfg);
-		else
-			write_handler(&ptf_cfg, ptf_cfg.fmt, 1);
-		ptf_cfg.fmt++;
-	}
-	va_end(ptf_cfg.ap);
-	return (ptf_cfg.size);
-}
-
-int	ft_printf(const char *fmt, ...)
-{
-	return (ft_dprintf(1, fmt));
+	return (ft_print(&ptf_cfg));
 }
