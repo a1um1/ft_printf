@@ -12,12 +12,12 @@
 
 #include "../ft_printf.h"
 
-void	format_string(t_ptf_cfg *pf_cfg)
+void	format_string(t_ptf_cfg *pf_cfg, va_list arg)
 {
 	char	*str;
 
 
-	str = va_arg(pf_cfg->ap, char *);
+	str = va_arg(arg, char *);
 	if (str == NULL)
 		return (write_handler(pf_cfg, "(null)", 6));
 	write_handler(pf_cfg, str, ft_strlen(str));

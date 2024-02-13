@@ -22,7 +22,6 @@
 typedef struct s_ptf_cfg
 {
 	int			size;
-	va_list		ap;
 	char		*fmt;
 	int			fd;
 }	t_ptf_cfg;
@@ -30,10 +29,10 @@ typedef struct s_ptf_cfg
 int		ft_printf(const char *fmt, ...);
 int		ft_dprintf(int fd, const char *fmt, ...);
 
-void	format_string(t_ptf_cfg *pf_cfg);
-void	format_mem(t_ptf_cfg *pf_cfg);
-void	format_number(t_ptf_cfg *pf_cfg, char *base);
-void	format_unumber(t_ptf_cfg *pf_cfg, char *base);
+void	format_string(t_ptf_cfg *pf_cfg, va_list arg);
+void	format_mem(t_ptf_cfg *pf_cfg, va_list arg);
+void	format_number(t_ptf_cfg *pf_cfg, va_list arg, char *base);
+void	format_unumber(t_ptf_cfg *pf_cfg, va_list arg, char *base);
 void	write_handler(t_ptf_cfg *ptf_cfg, const char *c, size_t len);
 
 #endif

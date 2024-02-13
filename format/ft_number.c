@@ -31,11 +31,11 @@ static void	format_unumber_base(t_ptf_cfg *ptf_cfg, size_t n, char *base)
 		write_handler(ptf_cfg, &(output[--output_idx]), 1);
 }
 
-void	format_number(t_ptf_cfg *pf_cfg, char *base)
+void	format_number(t_ptf_cfg *pf_cfg, va_list arg, char *base)
 {
 	long	d;
 
-	d = (long) va_arg(pf_cfg->ap, int);
+	d = (long) va_arg(arg, int);
 	if (d < 0)
 	{
 		d = -d;
@@ -44,19 +44,19 @@ void	format_number(t_ptf_cfg *pf_cfg, char *base)
 	format_unumber_base(pf_cfg, d, base);
 }
 
-void	format_unumber(t_ptf_cfg *pf_cfg, char *base)
+void	format_unumber(t_ptf_cfg *pf_cfg, va_list arg, char *base)
 {
 	unsigned int	d;
 
-	d = va_arg(pf_cfg->ap, unsigned int);
+	d = va_arg(arg, unsigned int);
 	format_unumber_base(pf_cfg, d, base);
 }
 
-void	format_mem(t_ptf_cfg *pf_cfg)
+void	format_mem(t_ptf_cfg *pf_cfg, va_list arg)
 {
 	size_t	d;
 
-	d = va_arg(pf_cfg->ap, size_t);
+	d = va_arg(arg, size_t);
 	write_handler(pf_cfg, "0x", 2);
 	format_unumber_base(pf_cfg, (size_t) d, "0123456789abcdef");
 }
