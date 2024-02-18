@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml <ml@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: tlakchai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 21:43:22 by tlakchai          #+#    #+#             */
-/*   Updated: 2024/02/12 02:18:13 by ml               ###   ########.fr       */
+/*   Updated: 2024/02/18 23:14:02 by tlakchai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	do_format(t_ptf_cfg *ptf_cfg, va_list arg)
 		write_handler(ptf_cfg, &(char){*(ptf_cfg->fmt)}, 1);
 }
 
-int ft_vprintf (t_ptf_cfg ptf_cfg, va_list arg)
+int	ft_vprintf(t_ptf_cfg ptf_cfg, va_list arg)
 {
 	while (*(ptf_cfg.fmt) != 0 && ptf_cfg.size >= 0)
 	{
